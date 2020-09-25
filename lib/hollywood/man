@@ -19,9 +19,9 @@ command -v ccze >/dev/null 2>&1 || exit 1
 
 trap "pkill -f -9 lib/hollywood/ >/dev/null 2>&1; exit" INT
 while true; do
-	FILES=$(ls /usr/share/man/man1/ | sort -R | sed "s/\.1\.gz.*$//" | head -n 4096)
+	FILES=$(ls /usr/local/share/man/man1/* | gsort -R | head -n 4096)
 	for f in $FILES; do
-		man "$f" | ccze -A
+		nroff -man "$f" | ccze -A
 		sleep 0.2
 	done
 done

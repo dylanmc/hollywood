@@ -28,7 +28,7 @@ spin_up() {
 	local dir="v"
 	local split=1
 	sleep 0.5
-	for w in $(ls "$WIDGET_DIR" | sort -R); do
+	for w in $(ls "$WIDGET_DIR" | gsort -R); do
 		[ "$dir" = "-v" ] && dir="-h" || dir="-v"
 		panes=$(tmux list-panes -t $PKG 2>/dev/null)
 		# Allow for failed widgets
@@ -62,7 +62,7 @@ while [ ! -z "$1" ]; do
 	esac
 done
 
-widget1=$(ls "$WIDGET_DIR/" | sort -R | head -n1)
+widget1=$(ls "$WIDGET_DIR/" | gsort -R | head -n1)
 arrangements="main-horizontal main-vertical tiled"
 
 if [ -z "$TMUX" ]; then
